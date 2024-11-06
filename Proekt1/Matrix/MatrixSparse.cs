@@ -10,9 +10,10 @@ namespace Proekt1
     {
         public MatrixSparse(int rows, int cols) : base(rows, cols)
         {
-            matrix = new VectorSparse[rows];
+            var matrix = new VectorSparse[rows];
             for (int i = 0; i < rows; i++)
                 matrix[i] = new VectorSparse();
+            Construct(matrix);
         }
     }
 }

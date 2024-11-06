@@ -1,4 +1,5 @@
 ﻿using Proekt1;
+using Proekt1.Tools;
 using static System.Console;
 
 
@@ -12,21 +13,23 @@ MatrixInit.Init(ms, 12, 10);
 
 MatrixStatistic matSt = new MatrixStatistic(md);
 WriteLine("Matrix 1:");
-Printer.Print(md);
+PrinterOld.Print(md);
 WriteLine("Notnull: " + matSt.Notnull);
 WriteLine("Sum: " + matSt.Sum);
 WriteLine("Max: " + matSt.Max);
 WriteLine("Avg: " + matSt.Avg);
 WriteLine();
 
+md.Print(new ConsolePrinter());
 
-matSt = new MatrixStatistic(ms);
+
+/*matSt = new MatrixStatistic(ms);
 WriteLine("Matrix 2:");
-Printer.Print(ms);
+PrinterOld.Print(ms);
 WriteLine("Notnull: " + matSt.Notnull);
 WriteLine("Sum: " + matSt.Sum);
 WriteLine("Max: " + matSt.Max);
-WriteLine("Avg: " + matSt.Avg);
+WriteLine("Avg: " + matSt.Avg);*/
 
 
 

@@ -8,7 +8,7 @@ namespace Proekt1
 {
     abstract class SomeMatrix : IMatrix
     {
-        protected IVector[] matrix;
+        private IVector[] matrix;
         public int ColumnsCount { get; private set; }
         public int RowsCount { get; private set; }
 
@@ -16,6 +16,11 @@ namespace Proekt1
         {
             ColumnsCount = cols;
             RowsCount = rows;
+        }
+
+        protected void Construct(IVector[] memory)
+        { 
+            matrix = memory;
         }
 
         public int getValue(int row, int col)

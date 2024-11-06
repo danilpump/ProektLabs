@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Proekt1
 {
-    class Printer
+    class PrinterOld
     {
         public static void Print(IMatrix matrix) 
         {
