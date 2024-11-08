@@ -7,9 +7,9 @@ BubbleSort bubble = new BubbleSort();
 
 AscendingStrat ascending = new AscendingStrat();
 DescendingStrat descending = new DescendingStrat();
-CustomStrat custom = new CustomStrat();
+//CustomStrat custom = new CustomStrat();
 
-foo();
+/*foo();
 bubble.Sort(arr, ascending);
 foo();
 
@@ -17,7 +17,17 @@ bubble.Sort(arr, descending);
 foo();
 
 bubble.Sort(arr, custom);
+foo();*/
+
+
+Decorator d = new InverseStrat(new CustomStrat(new AscendingStrat()));
+
 foo();
+bubble.Sort(arr, d);
+foo();
+
+
+
 
 void foo() 
 {

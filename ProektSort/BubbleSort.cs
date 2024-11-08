@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProektSort
 {
-    internal class BubbleSort : ASorter
+    internal class BubbleSort : ASorter // Concrete component
     {
         public override void Sort(int[] array, IComparer comparer)
         {

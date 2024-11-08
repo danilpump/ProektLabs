@@ -6,14 +6,16 @@ using System.Threading.Tasks;
 
 namespace ProektSort
 {
-    internal class CustomStrat : IComparer
+    internal class CustomStrat : Decorator
     {
-        public bool Compare(int x, int y)
+        public CustomStrat(IComparer comparer) : base(comparer) { }
+
+        public override bool Compare(int x, int y)
         {
             if (x % 2 == 0 && y % 2 == 0)
-                return x > y;
+                return comparer.Compare(x, y);
             else if (x % 2 != 0 && y % 2 != 0)
-                return x < y;
+                return !comparer.Compare(x, y);
             else if (x % 2 != 0)
                 return false;
             else if (y % 2 != 0)

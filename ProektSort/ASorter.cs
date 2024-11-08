@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProektSort
 {
-    internal abstract class ASorter
+    abstract class ASorter // Component
     {
         public abstract void Sort(int[] array, IComparer comparer);
     }
