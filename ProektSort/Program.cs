@@ -20,13 +20,14 @@ bubble.Sort(arr, custom);
 foo();*/
 
 
-Decorator d = new InverseStrat(new CustomStrat(new AscendingStrat()));
+Decorator d = new CustomStrat(new AscendingStrat());
 
 foo();
 bubble.Sort(arr, d);
 foo();
 
-
+bubble.Sort(arr, new InverseStrat(d));
+foo();
 
 
 void foo() 
