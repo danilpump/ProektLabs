@@ -30,7 +30,8 @@ namespace ProektMatrix
             if (index == -1)
                 vec.Add(Length+1, value);
             else if (index >= 0)
-                vec.Add(index, value);
+                vec[index] = value;
+            //vec.Add(index, value);
             else
                 throw new Exception("Uncorrect index");
         }

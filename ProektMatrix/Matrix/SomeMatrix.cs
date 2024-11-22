@@ -17,6 +17,7 @@ namespace ProektMatrix
             ColumnsCount = cols;
             RowsCount = rows;
         }
+        public abstract IVector[] allocMemory(int rows, int cols);
 
         protected void Construct(IVector[] memory)
         { 
@@ -33,21 +34,18 @@ namespace ProektMatrix
             matrix[row].setElem(value, col);
         }
 
-        public virtual void Print(IPrinter printer, bool frame)
-        {
-            throw new NotImplementedException();
-        }
+        public abstract void Print(IPrinter printer, bool frame);
 
-        public virtual void DrawCell(int x, int y, int marginCoef, IPrinter printer)
+        public virtual void DrawCell(int r, int c, int marginCoef, IPrinter printer)
         {
             int displacement = 1,
-                _y = y * 2 + displacement,
-                _x = x * (marginCoef + 1) + displacement;
+                _y = r * 2 + displacement,
+                _x = c * (marginCoef + 1) + displacement;
             printer.DrawLine(_x, _y, _x + marginCoef + 1, _y);
             printer.DrawLine(_x + marginCoef + 1, _y, _x + marginCoef + 1, _y + 2);
             printer.DrawLine(_x, _y, _x, _y + 2);
             printer.DrawLine(_x, _y + 2, _x + marginCoef + 1, _y + 2);
-            printer.DrawText(_x + 1, _y + 1, getValue(x, y).ToString());
+            printer.DrawText(_x + 1, _y + 1, getValue(r, c).ToString());
         }
 
         public virtual void DrawFrame(int marginCoef, IPrinter printer)

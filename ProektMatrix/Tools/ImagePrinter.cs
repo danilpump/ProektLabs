@@ -12,17 +12,21 @@ namespace ProektMatrix
     {
         private Bitmap bitmap;
         private Graphics graphics;
-        private Pen pen = new Pen(Color.Black, 1);
+        private Pen pen;
+        private Font font;
+        private Brush brush;
         private int marginCoefVert = 20;
         private int marginCoefHor = 20;
         private PictureBox pictureBox;
 
-        public ImagePrinter(Bitmap _bitmap, PictureBox _pictureBox)
+        public ImagePrinter(PictureBox _pictureBox)
         {
-            this.bitmap = _bitmap;
-            this.pictureBox = _pictureBox;
+            pictureBox = _pictureBox;
+            bitmap = new Bitmap(2000, 2000);
+            pen = new Pen(Color.Black, 1);
+            font = new Font(FontFamily.GenericMonospace, 12, FontStyle.Regular);
+            brush = new SolidBrush(Color.Black);
         }
-
         public void DrawLine(int _x, int _y, int _x1, int _y1)
         {
             int x = _x * marginCoefHor,
@@ -32,17 +36,10 @@ namespace ProektMatrix
             graphics = graphics is null ? Graphics.FromImage(bitmap) : graphics;
             graphics.DrawLine(pen, x, y, x1, y1);
         }
-
         public void DrawText(int x, int y, string text)
         {
-            graphics.DrawString(text, new Font(FontFamily.GenericMonospace, 12, FontStyle.Regular),
-                new SolidBrush(Color.Black),
-                x * marginCoefHor, y * marginCoefVert);
+            graphics.DrawString(text, font, brush, x * marginCoefHor, y * marginCoefVert);
         }
-
-        public void Print()
-        {
-            pictureBox.Image = bitmap;
-        }
+        public void Print() => pictureBox.Image = bitmap;
     }
 }

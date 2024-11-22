@@ -10,10 +10,15 @@ namespace ProektMatrix
     {
         public MatrixSparse(int rows, int cols) : base(rows, cols)
         {
+            Construct(allocMemory(rows, cols));
+        }
+
+        public override IVector[] allocMemory(int rows, int cols)
+        {
             var matrix = new VectorSparse[rows];
             for (int i = 0; i < rows; i++)
                 matrix[i] = new VectorSparse();
-            Construct(matrix);
+            return matrix;
         }
 
         public override void Print(IPrinter printer, bool frame)
