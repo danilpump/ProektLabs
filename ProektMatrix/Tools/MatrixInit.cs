@@ -10,7 +10,7 @@ namespace ProektMatrix
     internal class MatrixInit
     {
         static Random rand = new Random();
-        public static void Init(IMatrix matrix, int notnull, int max)
+        public static void Init(IPrintableMatrix matrix, int notnull, int max)
         {
             while (notnull>0)
             {

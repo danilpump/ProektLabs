@@ -20,7 +20,7 @@ namespace ProektMatrix
         }
 
         private bool frame = false;
-        private SomeMatrix matrix;
+        private IPrintableMatrix matrix;
         private RenumDecorator decorator;
 
         private void Print()
@@ -28,7 +28,7 @@ namespace ProektMatrix
             matrix.Print(new ConsolePrinter(), frame);
             matrix.Print(new ImagePrinter(pictureBox1), frame);
         }
-        private void Init(SomeMatrix _matrix, int n, int m)
+        private void Init(IPrintableMatrix _matrix, int n, int m)
         {
             MatrixInit.Init(_matrix, n, m);
             matrix = _matrix;
@@ -56,7 +56,7 @@ namespace ProektMatrix
             if (matrix != null)
             {
                 if (decorator is null) decorator = new RenumDecorator(matrix);
-                decorator.Renumerate();
+                decorator.Decorate();
                 matrix = decorator;
                 Print();
             }
