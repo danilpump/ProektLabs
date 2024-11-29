@@ -60,8 +60,6 @@ namespace ProektMatrix
 
         public void DrawCell(int row, int col, int marginCoef, int value, IPrinter printer, int offsetX = 0, int offsetY = 0)
         {
-            if (row == 1 && col == 0)
-                Console.WriteLine();
             if(value <= 0) return;
             int tempCol = col;
             //if (col >= ColumnsCount) throw new NotImplementedException();
