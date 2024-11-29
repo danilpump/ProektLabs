@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProektMatrix
 {
-    class MatrixDefault : SomeMatrix
+    class MatrixDefault : AMatrix
     {
         public MatrixDefault(int rows, int cols) : base(rows, cols)
         {

@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace ProektMatrix
 {
-    abstract class SomeMatrix : IPrintableMatrix//IMatrix , IPrintable
+    abstract class AMatrix : IPrintableMatrix//IMatrix , IPrintable
     {
         private IVector[] matrix;
         public int ColumnsCount { get; private set; }
         public int RowsCount { get; private set; }
 
-        public SomeMatrix(int rows, int cols) 
+        public AMatrix(int rows, int cols) 
         {
             ColumnsCount = cols;
             RowsCount = rows;
@@ -34,25 +34,25 @@ namespace ProektMatrix
             matrix[row].setElem(value, col);
         }
 
-        public virtual void Print(IPrinter printer, bool frame)
+        public virtual void Print(IPrinter printer, bool frame, int offsetX = 0, int offsetY = 0)
         {
             int maxLenght = 0;
             for (int i = 0; i < RowsCount; i++)
                 for (int j = 0; j < ColumnsCount; j++)
-                    maxLenght = getValue(i, j).ToString().Length > maxLenght ? getValue(i, j).ToString().Length : maxLenght;
+                    maxLenght = Math.Abs(getValue(i, j)).ToString().Length > maxLenght ? Math.Abs(getValue(i, j)).ToString().Length : maxLenght;
 
-            if (frame) DrawFrame(maxLenght, printer);
+            if (frame) DrawFrame(RowsCount, ColumnsCount, maxLenght, printer, offsetX, offsetY);
             for (int i = 0; i < RowsCount; i++)
                 for (int j = 0; j < ColumnsCount; j++)
-                    DrawCell(i, j, maxLenght, getValue(i,j), printer);
+                    DrawCell(i, j, maxLenght, getValue(i,j), printer, offsetX, offsetY);
             printer.Print();
         }
 
-        public virtual void DrawCell(int r, int c, int marginCoef, int value, IPrinter printer)
+        public virtual void DrawCell(int r, int c, int marginCoef, int value, IPrinter printer, int offsetX = 0, int offsetY = 0)
         {
             int displacement = 1,
-                _y = r * 2 + displacement,
-                _x = c * (marginCoef + 1) + displacement;
+                _y = r * 2 + displacement + offsetY,
+                _x = c * (marginCoef + 1) + displacement + offsetX;
             printer.DrawLine(_x, _y, _x + marginCoef + 1, _y);
             printer.DrawLine(_x + marginCoef + 1, _y, _x + marginCoef + 1, _y + 2);
             printer.DrawLine(_x, _y, _x, _y + 2);
@@ -60,14 +60,14 @@ namespace ProektMatrix
             printer.DrawText(_x + 1, _y + 1, value.ToString());
         }
 
-        public virtual void DrawFrame(int marginCoef, IPrinter printer)
+        public virtual void DrawFrame(int rows, int cols, int marginCoef, IPrinter printer, int oX = 0, int oY = 0)
         {
-            int marginWidth = (marginCoef + 1) * ColumnsCount + 2,
-                marginHeight = 2 * RowsCount + 2;
-            printer.DrawLine(0, 0, marginWidth, 0);
-            printer.DrawLine(marginWidth, 0, marginWidth, marginHeight);
-            printer.DrawLine(0, 0, 0, marginHeight);
-            printer.DrawLine(0, marginHeight, marginWidth, marginHeight);
+            int marginWidth = (marginCoef + 1) * cols + 2,
+                marginHeight = 2 * rows + 2;
+            printer.DrawLine(oX, oY, marginWidth + oX, oY);
+            printer.DrawLine(marginWidth + oX, oY, marginWidth + oX, marginHeight + oY);
+            printer.DrawLine(oX, oY, oX, marginHeight + oY);
+            printer.DrawLine(oX, marginHeight + oY, marginWidth + oX, marginHeight + oY);
         }
     }
 }

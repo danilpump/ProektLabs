@@ -30,9 +30,9 @@ namespace ProektMatrix.Decorator
             rand1 = rand.Next(size);
             while (rand1 == rand2)
                 rand2 = rand.Next(size);
-            if (flag == 1) Swap(ref Rows[rand1], ref Rows[rand2]);
-            else Swap(ref Columns[rand1], ref Columns[rand2]);
-            
+            if (flag == 1) Swap(ref Columns[rand1], ref Columns[rand2]);
+            else Swap(ref Rows[rand1], ref Rows[rand2]);
+
         }
         private void Swap(ref int a, ref int b)
         {

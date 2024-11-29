@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProektMatrix
 {
-    class MatrixSparse : SomeMatrix
+    class MatrixSparse : AMatrix
     {
         public MatrixSparse(int rows, int cols) : base(rows, cols)
         {
@@ -20,10 +20,10 @@ namespace ProektMatrix
                 matrix[i] = new VectorSparse();
             return matrix;
         }
-        public override void DrawCell(int r, int c, int marginCoef, int value, IPrinter printer)
+        public override void DrawCell(int r, int c, int marginCoef, int value, IPrinter printer, int offsetX = 0, int offsetY = 0)
         {
             if (value == 0) return;
-            base.DrawCell(r, c, marginCoef, value, printer);
+            base.DrawCell(r, c, marginCoef, value, printer, offsetX, offsetY);
         }
     }
 }

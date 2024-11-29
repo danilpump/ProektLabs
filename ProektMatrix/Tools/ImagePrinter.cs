@@ -34,11 +34,11 @@ namespace ProektMatrix
                 x1 = _x1 * marginCoefHor,
                 y1 = _y1 * marginCoefVert;
             graphics = graphics is null ? Graphics.FromImage(bitmap) : graphics;
-            graphics.DrawLine(pen, x, y, x1, y1);
+            graphics.DrawLine(pen, x, y, x1, y1);            
         }
         public void DrawText(int x, int y, string text)
         {
-            graphics.DrawString(text, font, brush, x * marginCoefHor, y * marginCoefVert);
+            graphics.DrawString(text, font, brush, x * marginCoefHor, y * marginCoefVert);            
         }
         public void Print() => pictureBox.Image = bitmap;
     }
